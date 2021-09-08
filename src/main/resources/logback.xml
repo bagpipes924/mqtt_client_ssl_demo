@@ -24,7 +24,10 @@
         
     <!-- ConsoleAppender 控制台输出日志 -->
     <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
-        <encoder>
+    	<filter class="ch.qos.logback.classic.filter.ThresholdFilter">   
+     		<level>DEBUG</level> 
+   		</filter>  
+        <encoder class="ch.qos.logback.classic.encoder.PatternLayoutEncoder">
             <pattern>
                 <!-- 设置日志输出格式 -->
                 ${log_pattern}
@@ -156,14 +159,14 @@
     <!-- root级别   DEBUG -->
     <root>
         <!-- 打印debug级别日志及以上级别日志 -->
-        <level value="info" />
+        <level value="TRACE" />
         <!-- 控制台输出 -->
         <appender-ref ref="console" />
         <!-- 文件输出 -->
         <appender-ref ref="ERROR" />
         <appender-ref ref="INFO" />
         <appender-ref ref="WARN" />
-        <!--<appender-ref ref="DEBUG" />  -->
+        <appender-ref ref="DEBUG" />
         <appender-ref ref="TRACE" />
     </root>
 </configuration>
