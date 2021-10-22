@@ -21,12 +21,12 @@ import com.emqx.util.SslUtil;
  */
 public class App {
 	private final static Logger logger = LoggerFactory.getLogger(App.class);
-	private static boolean ssl=true; //是否认证
+	private static boolean ssl=false; //是否认证
 	private static String broker =null;
     public static void main( String[] args ) throws Exception{
-        String clientid="zhangheng";
+        String clientid="test";
         //System.setProperty("javax.net.debug", "all");
-        String ip="bagpipes.com";
+        String ip="192.168.7.27";
         if(ssl) {
         	broker="ssl://"+ip+":8883";
         }else {
@@ -38,7 +38,9 @@ public class App {
         client.setCallback(new ClientCallBack());
         client.connect(connOpts);
         client.subscribe("test/#",1);
+        logger.debug("是否启动认证："+ssl);
         logger.info("连接成功："+broker);
+        logger.error("测试错误日志");
         /*
         client.connect(connOpts, null, new MqttActionListener() {
 
